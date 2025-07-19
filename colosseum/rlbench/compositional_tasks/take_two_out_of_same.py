@@ -36,18 +36,20 @@ class TakeTwoOutOfSame(Task):
         block_conditions = [DetectedCondition(block, success_sensor) for block in self._blocks]
         self.register_success_conditions(block_conditions)
 
-        formatted_desc = {
-            "vanilla": [
-                f"take two blocks out of the {option} drawer and place them on the drawer's surface"
-            ],
-            "oracle_half": [
-                f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface\npick up the block in the {option} drawer\nplace the block on the drawer's surface"
-            ],
-            "oracle_full": [
-                f"open the {option} drawer\ntake the block out of the {option} drawer and place the block on the drawer's surface\ntake the block out of the {option} drawer and place the block on the drawer's surface"
-            ]
-        }
-        return formatted_desc
+        # formatted_desc = {
+        #     "vanilla": [
+        #         f"take two blocks out of the {option} drawer and place them on the drawer's surface"
+        #     ],
+        #     "oracle_half": [
+        #         f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface\npick up the block in the {option} drawer\nplace the block on the drawer's surface"
+        #     ],
+        #     "oracle_full": [
+        #         f"open the {option} drawer\ntake the block out of the {option} drawer and place the block on the drawer's surface\ntake the block out of the {option} drawer and place the block on the drawer's surface"
+        #     ]
+        # }
+        return [
+            f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface\npick up the block in the {option} drawer\nplace the block on the drawer's surface"
+        ]
 
     def variation_count(self) -> int:
         return 3

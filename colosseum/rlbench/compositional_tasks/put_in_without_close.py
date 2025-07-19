@@ -29,18 +29,20 @@ class PutInWithoutClose(Task):
         self.register_success_conditions(
             [DetectedCondition(self._item, success_sensor)])
 
-        formatted_desc = {
-            "vanilla": [
-                f"put the block in the {option} drawer"
-            ],
-            "oracle_half": [
-                f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer"
-            ],
-            "oracle_full": [
-                f"open the {option} drawer\nput the block in the {option} drawer"
-            ]
-        }
-        return formatted_desc
+        # formatted_desc = {
+        #     "vanilla": [
+        #         f"put the block in the {option} drawer"
+        #     ],
+        #     "oracle_half": [
+        #         f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer"
+        #     ],
+        #     "oracle_full": [
+        #         f"open the {option} drawer\nput the block in the {option} drawer"
+        #     ]
+        # }
+        return [
+            f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer"
+        ]
 
     def variation_count(self) -> int:
         return 3

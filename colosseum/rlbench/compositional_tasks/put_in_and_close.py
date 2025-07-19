@@ -32,18 +32,20 @@ class PutInAndClose(Task):
         drawer_off = DrawerCondition(self._joints[index], 0.03, "close")
         self.register_success_conditions([block_in, drawer_off])
 
-        formatted_desc = {
-            "vanilla": [
-                f"put the block in the {option} drawer and close it"
-            ],
-            "oracle_half": [
-                f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer\nmove close to the {option} drawer handle\npush the {option} drawer shut"
-            ],
-            "oracle_full": [
-                f"open the {option} drawer\nput the block in the {option} drawer\nclose the {option} drawer"
-            ]
-        }
-        return formatted_desc
+        # formatted_desc = {
+        #     "vanilla": [
+        #         f"put the block in the {option} drawer and close it"
+        #     ],
+        #     "oracle_half": [
+        #         f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer\nmove close to the {option} drawer handle\npush the {option} drawer shut"
+        #     ],
+        #     "oracle_full": [
+        #         f"open the {option} drawer\nput the block in the {option} drawer\nclose the {option} drawer"
+        #     ]
+        # }
+        return [
+            f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer\nmove close to the {option} drawer handle\npush the {option} drawer shut"
+        ]
 
     def variation_count(self) -> int:
         return 3

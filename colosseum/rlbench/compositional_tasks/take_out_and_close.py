@@ -36,18 +36,20 @@ class TakeOutAndClose(Task):
         drawer_off = DrawerCondition(self._joints[index], 0.03, "close")
         self.register_success_conditions([block_on, drawer_off])
 
-        formatted_desc = {
-            "vanilla": [
-                f"take the block out of the {option} drawer, place the block on the drawer's surface, and then close the {option} drawer"
-            ],
-            "oracle_half": [
-                f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface\nmove close to the {option} drawer handle\npush the {option} drawer shut"
-            ],
-            "oracle_full": [
-                f"open the {option} drawer\ntake the block out of the {option} drawer and place the block on the drawer's surface\nclose the {option} drawer"
-            ]
-        }
-        return formatted_desc
+        # formatted_desc = {
+        #     "vanilla": [
+        #         f"take the block out of the {option} drawer, place the block on the drawer's surface, and then close the {option} drawer"
+        #     ],
+        #     "oracle_half": [
+        #         f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface\nmove close to the {option} drawer handle\npush the {option} drawer shut"
+        #     ],
+        #     "oracle_full": [
+        #         f"open the {option} drawer\ntake the block out of the {option} drawer and place the block on the drawer's surface\nclose the {option} drawer"
+        #     ]
+        # }
+        return [
+            f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface\nmove close to the {option} drawer handle\npush the {option} drawer shut"
+        ]
 
     def variation_count(self) -> int:
         return 3

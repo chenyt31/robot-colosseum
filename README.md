@@ -41,6 +41,12 @@ python colosseum/tools/visualize_task_atomic.py --config-name=open_drawer
 python colosseum/tools/task_builder.py \
 --tasks_py_dir=/data1/cyt/HiMan_VL/third_party/robot-colosseum/colosseum/rlbench/atomic_tasks \
 --tasks_ttm_dir=/data1/cyt/HiMan_VL/third_party/robot-colosseum/colosseum/rlbench/atomic_task_ttms
+
+python colosseum/tools/visualize_task_compositional.py --config-name=box_exchange
+
+python colosseum/tools/task_builder.py \
+--tasks_py_dir=/data1/cyt/HiMan_VL/third_party/robot-colosseum/colosseum/rlbench/compositional_tasks \
+--tasks_ttm_dir=/data1/cyt/HiMan_VL/third_party/robot-colosseum/colosseum/rlbench/compositional_task_ttms
 ```
 
 ## Citation

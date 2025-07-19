@@ -25,7 +25,7 @@ data:
   # We want to save the masks as rgb encodings.
   masks_as_one_channel: True
 env:
-  task_name: "sweep_to_dustpan"
+  task_name: "put_two_in_same"
   seed: 42
   scene:
     factors:
@@ -33,32 +33,38 @@ env:
       - variation: object_color
         name: manip_obj_color
         enabled: False
-        targets: ['sweep_to_dustpan_broom_visual', 'dirt0', 'dirt1', 'dirt2', 'dirt3', 'dirt4']
+        targets: [item0, item1]
         seed: ${env.seed}
 
       - variation: object_color
         name: recv_obj_color
         enabled: False
-        targets: [Dustpan_4]
+        targets: [drawer_frame,
+                  drawer_legs,
+                  drawer_bottom,
+                  drawer_middle,
+                  drawer_top]
         seed: ${env.seed}
 
       - variation: object_texture
         name: manip_obj_tex
         enabled: False
-        targets: ['sweep_to_dustpan_broom_visual', 'dirt0', 'dirt1', 'dirt2', 'dirt3', 'dirt4']
-        seed: ${env.seed}
-
-      - variation: object_texture
-        name: recv_obj_tex
-        enabled: False
-        targets: [Dustpan_4]
+        targets: [item0, item1]
+        uv_scale: [0.25, 0.25]
         seed: ${env.seed}
 
       - variation: object_size
-        name: recv_obj_size
+        name: manip_obj_size
         enabled: False
-        targets: [Dustpan_4]
-        scale_range: [0.75, 1.15]
+        targets: [item0, item1]
+        scale_range: [0.75, 1.0]
+        seed: ${env.seed}
+      
+      - variation: object_size
+        name: recv_obj_color
+        enabled: True
+        targets: [drawer_frame]
+        scale_range: [0.75, 1.0]
         seed: ${env.seed}
 
       - variation: light_color

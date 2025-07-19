@@ -45,18 +45,20 @@ class TakeTwoOutOfDifferent(Task):
         block_conditions = [DetectedCondition(block, success_sensor) for block in self._blocks]
         self.register_success_conditions(block_conditions)
 
-        formatted_desc = {
-            "vanilla": [
-                f"take one block out of the {option0} drawer and take the other block out of the {option1} drawer, then place them on the drawer's surface"
-            ],
-            "oracle_half": [
-                f"grasp the {option0} drawer handle\npull the {option0} drawer open\npick up the block in the {option0} drawer\nplace the block on the drawer's surface\nmove close to the {option0} drawer handle\npush the {option0} drawer shut\ngrasp the {option1} drawer handle\npull the {option1} drawer open\npick up the block in the {option1} drawer\nplace the block on the drawer's surface"
-            ],
-            "oracle_full": [
-                f"open the {option0} drawer\ntake the block out of the {option0} drawer and place the block on the drawer's surface\nclose the {option0} drawer\nopen the {option1} drawer\ntake the block out of the {option1} drawer and place the block on the drawer's surface"
-            ]
-        }
-        return formatted_desc
+        # formatted_desc = {
+        #     "vanilla": [
+        #         f"take one block out of the {option0} drawer and take the other block out of the {option1} drawer, then place them on the drawer's surface"
+        #     ],
+        #     "oracle_half": [
+        #         f"grasp the {option0} drawer handle\npull the {option0} drawer open\npick up the block in the {option0} drawer\nplace the block on the drawer's surface\nmove close to the {option0} drawer handle\npush the {option0} drawer shut\ngrasp the {option1} drawer handle\npull the {option1} drawer open\npick up the block in the {option1} drawer\nplace the block on the drawer's surface"
+        #     ],
+        #     "oracle_full": [
+        #         f"open the {option0} drawer\ntake the block out of the {option0} drawer and place the block on the drawer's surface\nclose the {option0} drawer\nopen the {option1} drawer\ntake the block out of the {option1} drawer and place the block on the drawer's surface"
+        #     ]
+        # }
+        return [
+            f"grasp the {option0} drawer handle\npull the {option0} drawer open\npick up the block in the {option0} drawer\nplace the block on the drawer's surface\nmove close to the {option0} drawer handle\npush the {option0} drawer shut\ngrasp the {option1} drawer handle\npull the {option1} drawer open\npick up the block in the {option1} drawer\nplace the block on the drawer's surface"
+        ]
 
     def variation_count(self) -> int:
         return 6
