@@ -3,27 +3,17 @@
 if [ $# -eq 0 ]
   then
     echo "Collecting demos from all tasks"
-
-    tasks=("basketball_in_hoop"
-           "close_box"
-           "close_laptop_lid"
-           "empty_dishwasher"
-           "get_ice_from_fridge"
-           "hockey"
-           "meat_on_grill"
-           "move_hanger"
-           "wipe_desk"
+    tasks=("box_in_cupboard"
+           "box_out_of_opened_drawer"
+           "close_drawer"
+           "put_in_opened_drawer"
+           "sweep_to_dustpan"
+           "box_out_of_cupboard"
+           "broom_out_of_cupboard"
            "open_drawer"
-           "slide_block_to_target"
-           "reach_and_drag"
-           "put_money_in_safe"
-           "place_wine_at_rack_location"
-           "insert_onto_square_peg"
-           "stack_cups"
-           "turn_oven_on"
-           "straighten_rope"
-           "setup_chess"
-           "scoop_with_spatula")
+           "rubbish_in_dustpan"
+           "take_out_of_opened_drawer"
+           )
 else
     echo "Collectins demos from task $1"
     tasks=("$1")
@@ -32,9 +22,9 @@ fi
 # idx from which to collect demos (use -1 for all idxs)
 IDX_TO_COLLECT=-1
 
-SAVE_PATH=/data1/cyt/HiMan_data/test_more
-NUMBER_OF_EPISODES=10
-IMAGE_SIZE=(256 256)
+SAVE_PATH=/data1/cyt/HiMan_data/test_atomic
+NUMBER_OF_EPISODES=1
+IMAGE_SIZE=(128 128)
 MAX_ATTEMPTS=20
 SEED=42
 USE_SAVE_STATES="True"
@@ -53,7 +43,7 @@ CAMERAS_USE_FRONT="True"
 for task in "${tasks[@]}"
 do
     echo "Processing task: $task"
-    python -m colosseum.tools.dataset_generator --config-name $task \
+    python -m colosseum.tools.dataset_generator_atomic --config-name $task \
             env.seed=$SEED \
             data.save_path=$SAVE_PATH \
             +data.max_attempts=$MAX_ATTEMPTS \

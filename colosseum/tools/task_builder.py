@@ -343,7 +343,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--tasks_ttm_dir",
-        default="",
+        default=TASKS_TTM_DIR,
         required=False,
         type=str,
         help=(
@@ -361,7 +361,7 @@ def main() -> int:
         if args.tasks_ttm_dir != ""
         else os.path.join(TASKS_PY_DIR, "..", "task_ttms")
     )
-
+    print(TASKS_PY_DIR)
     # Add the directory to the tasks files to our path for importing
     sys.path.insert(0, TASKS_PY_DIR)
     # --------------------------------------------------------------------------

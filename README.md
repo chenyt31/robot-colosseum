@@ -27,6 +27,22 @@ supporting 14 variation factors that randomize parts of the simulation.
 - Data Generation: [Data Generation][11]
 - RVT baseline: [RVT baseline repo][12]
 
+# Visualize Task
+
+```bash
+cd /data1/cyt/HiMan_VL/
+source .venv/bin/activate
+export PYTHONPATH=$PYTHONPATH:$PWD:$PWD/third_party/RVT/rvt/libs/PyRep:$PWD/third_party/RVT/rvt/libs/RLBench:$PWD/third_party/RVT/rvt/libs/point-renderer:$PWD/third_party/robot-colosseum
+cd third_party/robot-colosseum
+export DISPLAY=10.22.22.139:0.0
+
+python colosseum/tools/visualize_task_atomic.py --config-name=open_drawer
+
+python colosseum/tools/task_builder.py \
+--tasks_py_dir=/data1/cyt/HiMan_VL/third_party/robot-colosseum/colosseum/rlbench/atomic_tasks \
+--tasks_ttm_dir=/data1/cyt/HiMan_VL/third_party/robot-colosseum/colosseum/rlbench/atomic_task_ttms
+```
+
 ## Citation
 
 ```bibtex
