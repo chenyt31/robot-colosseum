@@ -50,14 +50,14 @@ env:
         name: manip_obj_size
         enabled: False
         targets: [strawberry_jello_visual]
-        scale_range: [0.75, 1.0]
+        scale_range: [0.75, 1.25]
         seed: ${env.seed}
       
       - variation: object_size
         name: recv_obj_color
         enabled: True
         targets: [drawer_frame]
-        scale_range: [0.75, 1.0]
+        scale_range: [0.9, 1.15]
         seed: ${env.seed}
 
       - variation: light_color

@@ -26,6 +26,8 @@ class PutInOpenedDrawer(Task):
         anchor = self._anchors[index]
         self._mark.set_position(anchor.get_position())
         self._joints[index].set_joint_position(0.24)
+        self._joints[(index+1)%3].set_joint_position(0.0)
+        self._joints[(index+2)%3].set_joint_position(0.0)
         success_sensor = ProximitySensor('success_' + option)
         self.register_success_conditions(
             [DetectedCondition(self._item, success_sensor)])

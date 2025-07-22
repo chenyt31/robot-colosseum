@@ -156,6 +156,7 @@ def run_all_rlbench_variations(
     variation_path = os.path.join(
         data_cfg.save_path,
         task_env.get_name() + f"_{i}",
+        "all_variations"
     )
     check_and_make(variation_path)
 
@@ -184,54 +185,54 @@ def run_all_rlbench_variations(
 
     ex_start = save_state.number_episodes if save_state is not None else 0
     abort_variation = False
-    for ex_idx in range(ex_start, data_cfg.episodes_per_task):
-        var_idx = np.random.randint(task_env.variation_count())
-        task_env.set_variation(var_idx)
-        descriptions, _ = task_env.reset()
+    ex_idx = ex_start
+    while ex_idx < data_cfg.episodes_per_task:
+        try:
+            task_env = rlbench_env.get_task(task)
+            var_idx = np.random.randint(task_env.variation_count())
+            task_env.set_variation(var_idx)
+            descriptions, _ = task_env.reset()
 
-        print(
-            "{}// Task: {} // Var: {} // RLBench-Var: {} // Demo: {}".format(
-                i, task_env.get_name(), variation_name, var_idx, ex_idx
+            print(
+                f"{i}// Task: {task_env.get_name()} // Var: {variation_name} "
+                f"// RLBench-Var: {var_idx} // Demo: {ex_idx}"
             )
-        )
 
-        attempts = safeGetValue(data_cfg, "max_attempts", MAX_ATTEMPTS)
-        while attempts > 0:
-            try:
-                # TODO: for now we do the explicit looping.
-                (demo,) = task_env.get_demos(amount=1, live_demos=True)
-            except Exception as e:
-                attempts -= 1
-                if attempts > 0:
-                    continue
-                problem = (
-                    f"Process {i} failed collecting task "
-                    + f"{task_env.get_name()} (variation: 0, "
-                    + f"example: {ex_idx}). Skipping "
-                    + f"this task/variation.\n{str(e)}\n"
-                )
-                print(problem)
-                tasks_with_problems += problem
-                abort_variation = True
-                break
-            episode_path = os.path.join(
-                episodes_path, const.EPISODE_FOLDER % ex_idx
-            )
-            with file_lock:
-                save_demo(data_cfg, demo, episode_path, var_idx)
-                if save_state is not None:
-                    save_state.number_episodes += 1
-                    with open(save_state.save_path, "wb") as fhandle:
-                        pickle.dump(save_state, fhandle)
+            attempts = safeGetValue(data_cfg, "max_attempts", MAX_ATTEMPTS)
+            while attempts > 0:
+                try:
+                    (demo,) = task_env.get_demos(amount=1, live_demos=True, max_attempts=1)
 
-                with open(
-                    os.path.join(episode_path, const.VARIATION_DESCRIPTIONS),
-                    "wb",
-                ) as f:
-                    pickle.dump(descriptions, f)
-            break
-        if abort_variation:
-            break
+                    # ===== 保存成功的 demo =====
+                    episode_path = os.path.join(episodes_path, const.EPISODE_FOLDER % ex_idx)
+                    with file_lock:
+                        save_demo(data_cfg, demo, episode_path, var_idx)
+                        if save_state is not None:
+                            save_state.number_episodes += 1
+                            with open(save_state.save_path, "wb") as fhandle:
+                                pickle.dump(save_state, fhandle)
+
+                        with open(os.path.join(episode_path, const.VARIATION_DESCRIPTIONS), "wb") as f:
+                            pickle.dump(descriptions, f)
+                    break  # demo 成功，跳出 attempts 循环
+                except Exception as e:
+                    attempts -= 1
+                    if attempts == 0:
+                        print(
+                            f"Process {i} failed collecting task {task_env.get_name()} "
+                            f"(variation: {var_idx}, example: {ex_idx}). Retrying this episode.\n{e}\n"
+                        )
+
+            # ===== 只有当 demo 采集成功才进入下一集 =====
+            if attempts > 0:
+                ex_idx += 1
+
+        except Exception as outer_e:
+            print(f"[{i}] Exception while setting up episode {ex_idx}: {outer_e}")
+            # 可选：sleep 或清除环境，再尝试
+            continue
+        # if abort_variation:
+        #     break
 
     results[i] = tasks_with_problems
     rlbench_env.shutdown()
@@ -390,10 +391,11 @@ def main(base_cfg: DictConfig) -> int:
     processes = [
         Process(
             target=(
-                run
-                if spreadsheet_idx != RLBENCH_ALL_VARIATIONS_INDEX
-                and spreadsheet_idx != RLBENCH_EVERYTHING_INDEX
-                else run_all_rlbench_variations
+                # run
+                # if spreadsheet_idx != RLBENCH_ALL_VARIATIONS_INDEX
+                # and spreadsheet_idx != RLBENCH_EVERYTHING_INDEX
+                # else run_all_rlbench_variations
+                run_all_rlbench_variations
             ),
             args=(
                 spreadsheet_idx,

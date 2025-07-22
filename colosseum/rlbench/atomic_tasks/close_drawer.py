@@ -20,6 +20,8 @@ class CloseDrawer(Task):
         option = self._options[index]
         self._mark.set_position(self._anchors[index].get_position())
         self._joints[index].set_joint_position(0.24)
+        self._joints[(index+1)%3].set_joint_position(0.0)
+        self._joints[(index+2)%3].set_joint_position(0.0)
         self.register_success_conditions(
             [DrawerCondition(self._joints[index], 0.03, "close")])
         

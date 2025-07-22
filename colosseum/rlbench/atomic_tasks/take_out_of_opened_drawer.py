@@ -28,8 +28,10 @@ class TakeOutOfOpenedDrawer(Task):
         self._mark.set_position(anchor.get_position())
         _, _, z_target = anchor.get_position()
         x, y, _ = self._block_pos.get_position()
-        self._item.set_position([x, y, z_target])
         self._joints[index].set_joint_position(0.24)
+        self._joints[(index+1)%3].set_joint_position(0.0)
+        self._joints[(index+2)%3].set_joint_position(0.0)
+        self._item.set_position([x, y, z_target])
         
         success_sensor = ProximitySensor('success')
         block_on = DetectedCondition(self._item, success_sensor)

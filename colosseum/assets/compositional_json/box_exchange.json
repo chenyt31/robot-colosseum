@@ -276,7 +276,7 @@
         {
             "spreadsheet_idx": 13,
             "variation_name" : "rlbench_variations",
-            "enabled": true,
+            "enabled": false,
             "variations": [
                 {"type": "object_color", "name": "manip_obj_color", "enabled": false},
                 {"type": "object_color", "name": "recv_obj_color", "enabled": false},
@@ -318,7 +318,7 @@
         {
             "spreadsheet_idx": 15,
             "variation_name" : "rlbench_and_colosseum",
-            "enabled": true,
+            "enabled": false,
             "variations": [
                 {"type": "object_color", "name": "manip_obj_color", "enabled": true},
                 {"type": "object_color", "name": "recv_obj_color", "enabled": true},
