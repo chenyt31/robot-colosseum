@@ -35,20 +35,18 @@ class BoxInCupboard(Task):
         self.register_success_conditions([DetectedCondition(self.groceries[index], ProximitySensor('success'))])
         
         option = GROCERY_NAMES[index]
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"put the {option} in the cupboard"
-        #     ],
-        #     "oracle_half": [
-        #         f"pick up the {option} on the table\nplace the {option} in the cupboard"
-        #     ],
-        #     "oracle_full": [
-        #         f"put the {option} in the cupboard"
-        #     ]
-        # }
-        return [
-            f"pick up the {option} on the table\nplace the {option} in the cupboard"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"put the {option} in the cupboard"
+            ],
+            "oracle_half": [
+                f"pick up the {option} on the table\nplace the {option} in the cupboard"
+            ],
+            "oracle_full": [
+                f"put the {option} in the cupboard"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return len(GROCERY_NAMES)

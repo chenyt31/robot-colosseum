@@ -39,20 +39,18 @@ class BoxOutOfOpenedDrawer(Task):
         block_on = DetectedCondition(self._item, success_sensor)
         self.register_success_conditions([block_on])
 
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"take the strawberry jello out of the {option} drawer and place the strawberry jello on the drawer's surface"
-        #     ],
-        #     "oracle_half": [
-        #         f"pick up the strawberry jello in the {option} drawer\nplace the strawberry jello on the drawer's surface"
-        #     ],
-        #     "oracle_full": [
-        #         f"take the strawberry jello out of the {option} drawer and place the strawberry jello on the drawer's surface"
-        #     ]
-        # }
-        return [
-            f"pick up the strawberry jello in the {option} drawer\nplace the strawberry jello on the drawer's surface"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"take the strawberry jello out of the {option} drawer and place the strawberry jello on the drawer's surface"
+            ],
+            "oracle_half": [
+                f"pick up the strawberry jello in the {option} drawer\nplace the strawberry jello on the drawer's surface"
+            ],
+            "oracle_full": [
+                f"take the strawberry jello out of the {option} drawer and place the strawberry jello on the drawer's surface"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 3

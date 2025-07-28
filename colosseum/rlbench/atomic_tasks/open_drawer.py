@@ -26,10 +26,18 @@ class OpenDrawer(Task):
         self._mark.set_position(self._anchors[index].get_position())
         self.register_success_conditions(
             [DrawerCondition(self._joints[index], 0.15, "open")])
-        
-        return [
-            f"grasp the {option} drawer handle\npull the {option} drawer open"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"open the {option} drawer"
+            ],
+            "oracle_half": [
+                f"grasp the {option} drawer handle\npull the {option} drawer open"
+            ],
+            "oracle_full": [
+                f"open the {option} drawer"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 3

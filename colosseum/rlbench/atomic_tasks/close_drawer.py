@@ -25,20 +25,18 @@ class CloseDrawer(Task):
         self.register_success_conditions(
             [DrawerCondition(self._joints[index], 0.03, "close")])
         
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"close the {option} drawer"
-        #     ],
-        #     "oracle_half": [
-        #         f"move close to the {option} drawer handle\npush the {option} drawer shut"
-        #     ],
-        #     "oracle_full": [
-        #         f"close the {option} drawer"
-        #     ]
-        # }
-        return [
-            f'move close to the {option} drawer handle\npush the {option} drawer shut'
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"close the {option} drawer"
+            ],
+            "oracle_half": [
+                f"move close to the {option} drawer handle\npush the {option} drawer shut"
+            ],
+            "oracle_full": [
+                f"close the {option} drawer"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 3

@@ -33,20 +33,18 @@ class TakeOutWithoutClose(Task):
         block_on = DetectedCondition(self._item, success_sensor)
         self.register_success_conditions([block_on])
 
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"take the block out of the {option} drawer and place the block on the drawer's surface"
-        #     ],
-        #     "oracle_half": [
-        #         f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface"
-        #     ],
-        #     "oracle_full": [
-        #         f"open the {option} drawer\ntake the block out of the {option} drawer and place the block on the drawer's surface"
-        #     ]
-        # }
-        return [
-            f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"take the block out of the {option} drawer and place the block on the drawer's surface"
+            ],
+            "oracle_half": [
+                f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block in the {option} drawer\nplace the block on the drawer's surface"
+            ],
+            "oracle_full": [
+                f"open the {option} drawer\ntake the block out of the {option} drawer and place the block on the drawer's surface"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 3

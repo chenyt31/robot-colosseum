@@ -15,20 +15,18 @@ class RubbishInDustpan(Task):
             [DetectedCondition(self.rubbish, success_sensor)])
 
     def init_episode(self, index: int) -> List[str]:
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"drop the rubbish into the dustpan"
-        #     ],
-        #     "oracle_half": [
-        #         f"pick up the rubbish on the table\ndrop the rubbish into the dustpan"
-        #     ],
-        #     "oracle_full": [
-        #         f"drop the rubbish into the dustpan"
-        #     ]
-        # }
-        return [
-            f"pick up the rubbish on the table\ndrop the rubbish into the dustpan"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"drop the rubbish into the dustpan"
+            ],
+            "oracle_half": [
+                f"pick up the rubbish on the table\ndrop the rubbish into the dustpan"
+            ],
+            "oracle_full": [
+                f"drop the rubbish into the dustpan"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 1

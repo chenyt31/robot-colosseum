@@ -21,20 +21,18 @@ class SweepAndDrop(Task):
         rubbish_conditions = [DetectedCondition(self.rubbish, self.success_sensor)]
         self.register_success_conditions(sweep_conditions + rubbish_conditions)
                 
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"clean all the dirt and rubbish into the dustpan"
-        #     ],
-        #     "oracle_half": [
-        #         f"pick up the rubbish on the table\ndrop the rubbish into the dustpan\npick up the broom on the table\nsweep dirt to dustpan"
-        #     ],
-        #     "oracle_full": [
-        #         f"drop the rubbish into the dustpan\nsweep dirt to dustpan"
-        #     ]
-        # }
-        return [
-            f"pick up the rubbish on the table\ndrop the rubbish into the dustpan\npick up the broom on the table\nsweep dirt to dustpan"
-        ]
-
+        formatted_desc = {
+            "vanilla": [
+                f"clean all the dirt and rubbish into the dustpan"
+            ],
+            "oracle_half": [
+                f"pick up the rubbish on the table\ndrop the rubbish into the dustpan\npick up the broom on the table\nsweep dirt to dustpan"
+            ],
+            "oracle_full": [
+                f"drop the rubbish into the dustpan\nsweep dirt to dustpan"
+            ]
+        }
+        return formatted_desc
+    
     def variation_count(self) -> int:
         return 1

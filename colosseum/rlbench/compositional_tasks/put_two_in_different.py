@@ -50,20 +50,18 @@ class PutTwoInDifferent(Task):
         or_condition = OrConditions([condition0, condition1])
         self.register_success_conditions([or_condition])
         
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"put one block in the {option0} drawer and put the other block in the {option1} drawer"
-        #     ],
-        #     "oracle_half": [
-        #         f"grasp the {option0} drawer handle\npull the {option0} drawer open\npick up the block on the drawer's surface\nplace the block in the {option0} drawer\nmove close to the {option0} drawer handle\npush the {option0} drawer shut\ngrasp the {option1} drawer handle\npull the {option1} drawer open\npick up the block on the drawer's surface\nplace the block in the {option1} drawer"
-        #     ],
-        #     "oracle_full": [
-        #         f"open the {option0} drawer\nput the block in the {option0} drawer\nclose the {option0} drawer\nopen the {option1} drawer\nput the block in the {option1} drawer"
-        #     ]
-        # }
-        return [
-            f"grasp the {option0} drawer handle\npull the {option0} drawer open\npick up the block on the drawer's surface\nplace the block in the {option0} drawer\nmove close to the {option0} drawer handle\npush the {option0} drawer shut\ngrasp the {option1} drawer handle\npull the {option1} drawer open\npick up the block on the drawer's surface\nplace the block in the {option1} drawer"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"put one block in the {option0} drawer and put the other block in the {option1} drawer"
+            ],
+            "oracle_half": [
+                f"grasp the {option0} drawer handle\npull the {option0} drawer open\npick up the block on the drawer's surface\nplace the block in the {option0} drawer\nmove close to the {option0} drawer handle\npush the {option0} drawer shut\ngrasp the {option1} drawer handle\npull the {option1} drawer open\npick up the block on the drawer's surface\nplace the block in the {option1} drawer"
+            ],
+            "oracle_full": [
+                f"open the {option0} drawer\nput the block in the {option0} drawer\nclose the {option0} drawer\nopen the {option1} drawer\nput the block in the {option1} drawer"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 6

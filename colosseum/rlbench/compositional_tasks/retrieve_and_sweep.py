@@ -25,20 +25,18 @@ class RetrieveAndSweep(Task):
         self.boundary.clear()
         self.boundary.sample(self.sample_dummy, ignore_collisions=True)
 
-        # formatted_desc = {
-        #     "vanilla": [
-        #         "sweep dirt to dustpan"
-        #     ],
-        #     "oracle_half": [
-        #         "pick up the broom in the cupboard\nsweep dirt to dustpan"
-        #     ],
-        #     "oracle_full": [
-        #         "put the broom on the table\nsweep dirt to dustpan"
-        #     ]
-        # }
-        return [
-            "pick up the broom in the cupboard\nsweep dirt to dustpan"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                "sweep dirt to dustpan"
+            ],
+            "oracle_half": [
+                "pick up the broom in the cupboard\nsweep dirt to dustpan"
+            ],
+            "oracle_full": [
+                "put the broom on the table\nsweep dirt to dustpan"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 1

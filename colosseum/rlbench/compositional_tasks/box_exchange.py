@@ -32,20 +32,18 @@ class BoxExchange(Task):
             [DetectedCondition(Shape('sugar'), ProximitySensor('success_ground')),
              DetectedCondition(Shape('spam'), ProximitySensor('success_cupboard'))])
         
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"exchange the positions of the spam and the sugar(put the sugar on the table and put the spam in the cupboard)"
-        #     ],
-        #     "oracle_half": [
-        #         f"pick up the sugar in the cupboard\nplace the sugar on the table\npick up the spam on the table\nplace the spam in the cupboard"
-        #     ],
-        #     "oracle_full": [
-        #         f"put the sugar on the table\nput the spam in the cupboard"
-        #     ]
-        # }
-        return [
-            f"pick up the sugar in the cupboard\nplace the sugar on the table\npick up the spam on the table\nplace the spam in the cupboard"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"exchange the positions of the spam and the sugar(put the sugar on the table and put the spam in the cupboard)"
+            ],
+            "oracle_half": [
+                f"pick up the sugar in the cupboard\nplace the sugar on the table\npick up the spam on the table\nplace the spam in the cupboard"
+            ],
+            "oracle_full": [
+                f"put the sugar on the table\nput the spam in the cupboard"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 1

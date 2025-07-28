@@ -30,20 +30,18 @@ class PutTwoInSame(Task):
         block_conditions = [DetectedCondition(block, success_sensor) for block in self._blocks]
         self.register_success_conditions(block_conditions)
 
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"put two blocks in the {option} drawer"
-        #     ],
-        #     "oracle_half": [
-        #         f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer\npick up the block on the drawer's surface\nplace the block in the {option} drawer"
-        #     ],
-        #     "oracle_full": [
-        #         f"open the {option} drawer\nput the block in the {option} drawer\nput the block in the {option} drawer"
-        #     ]
-        # }
-        return [
-            f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer\npick up the block on the drawer's surface\nplace the block in the {option} drawer"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"put two blocks in the {option} drawer"
+            ],
+            "oracle_half": [
+                f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the block on the drawer's surface\nplace the block in the {option} drawer\npick up the block on the drawer's surface\nplace the block in the {option} drawer"
+            ],
+            "oracle_full": [
+                f"open the {option} drawer\nput the block in the {option} drawer\nput the block in the {option} drawer"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 3

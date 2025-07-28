@@ -4,7 +4,7 @@ if [ $# -eq 0 ]
   then
     echo "Collecting demos from all tasks"
     tasks=("put_in_without_close"
-           "retrieve_and_sweep"
+           "sweep_and_drop"
            "take_out_without_close"
            "transfer_box"
            )

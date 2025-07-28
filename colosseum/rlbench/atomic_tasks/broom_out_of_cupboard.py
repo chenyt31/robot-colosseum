@@ -26,20 +26,18 @@ class BroomOutOfCupboard(Task):
         conditions = [DetectedCondition(self.broom, self.success_sensor)]
         self.register_success_conditions(conditions)
         
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"put the broom on the table"
-        #     ],
-        #     "oracle_half": [
-        #         f"pick up the broom in the cupboard\nplace the broom on the table"
-        #     ],
-        #     "oracle_full": [
-        #         f"put the broom on the table"
-        #     ]
-        # }
-        return [
-            f"pick up the broom in the cupboard\nplace the broom on the table"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"put the broom on the table"
+            ],
+            "oracle_half": [
+                f"pick up the broom in the cupboard\nplace the broom on the table"
+            ],
+            "oracle_full": [
+                f"put the broom on the table"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 1

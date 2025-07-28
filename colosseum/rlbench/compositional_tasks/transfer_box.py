@@ -40,20 +40,18 @@ class TransferBox(Task):
         block_on = DetectedCondition(self._item, success_sensor)
         self.register_success_conditions([block_on])
 
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"take the strawberry jello out of the {option} drawer and put the strawberry jello in the cupboard"
-        #     ],
-        #     "oracle_half": [
-        #         f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the strawberry jello in the {option} drawer\nplace the strawberry jello in the cupboard"
-        #     ],
-        #     "oracle_full": [
-        #         f"open the {option} drawer\ntake the strawberry jello out of the {option} drawer and place the strawberry jello on the drawer's surface\nput the strawberry jello in the cupboard"
-        #     ]
-        # }
-        return [
-            f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the strawberry jello in the {option} drawer\nplace the strawberry jello in the cupboard"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"take the strawberry jello out of the {option} drawer and put the strawberry jello in the cupboard"
+            ],
+            "oracle_half": [
+                f"grasp the {option} drawer handle\npull the {option} drawer open\npick up the strawberry jello in the {option} drawer\nplace the strawberry jello in the cupboard"
+            ],
+            "oracle_full": [
+                f"open the {option} drawer\ntake the strawberry jello out of the {option} drawer and place the strawberry jello on the drawer's surface\nput the strawberry jello in the cupboard"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 3

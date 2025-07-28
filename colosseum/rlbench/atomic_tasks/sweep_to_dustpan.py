@@ -24,20 +24,18 @@ class SweepToDustpan(Task):
         self.boundary.clear()
         self.boundary.sample(self.sample_dummy, ignore_collisions=True, min_distance=0.01)
         
-        # formatted_desc = {
-        #     "vanilla": [
-        #         f"sweep dirt to dustpan"
-        #     ],
-        #     "oracle_half": [
-        #         f"pick up the broom on the table\nsweep dirt to dustpan"
-        #     ],
-        #     "oracle_full": [
-        #         f"sweep dirt to dustpan"
-        #     ]
-        # }
-        return [
-            f"pick up the broom on the table\nsweep dirt to dustpan"
-        ]
+        formatted_desc = {
+            "vanilla": [
+                f"sweep dirt to dustpan"
+            ],
+            "oracle_half": [
+                f"pick up the broom on the table\nsweep dirt to dustpan"
+            ],
+            "oracle_full": [
+                f"sweep dirt to dustpan"
+            ]
+        }
+        return formatted_desc
 
     def variation_count(self) -> int:
         return 1
