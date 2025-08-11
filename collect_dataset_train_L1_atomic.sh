@@ -23,7 +23,7 @@ fi
 # idx from which to collect demos (use -1 for all idxs)
 IDX_TO_COLLECT=0
 
-SAVE_PATH=/data1/cyt/HiMan_data/train_atomic_L1
+SAVE_PATH=/inspire/hdd/project/robot-reasoning/cengxianchao-240108110052/yangtao/HiMan_data/train_atomic_L1
 NUMBER_OF_EPISODES=20
 IMAGE_SIZE=(256 256)
 MAX_ATTEMPTS=20
