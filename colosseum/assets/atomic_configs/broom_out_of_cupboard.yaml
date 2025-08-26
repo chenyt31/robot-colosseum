@@ -83,7 +83,7 @@ env:
 
       - variation: distractor_object
         enabled: False
-        targets: [boundary_root]
+        targets: [workspace]
         num_objects: 2
         seed: ${env.seed}
 

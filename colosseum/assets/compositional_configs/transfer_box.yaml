@@ -89,7 +89,7 @@ env:
 
       - variation: distractor_object
         enabled: False
-        targets: [spawn_boundary0]
+        targets: [workspace]
         num_objects: 2
         seed: ${env.seed}
 
